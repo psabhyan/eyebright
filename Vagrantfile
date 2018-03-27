@@ -3,7 +3,7 @@
 
 Vagrant.configure(2) do |config|
   # This box works better than the centos project created one
-  config.vm.box = "boxcutter/centos72"
+  config.vm.box = "bento/centos-7.2"
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -32,7 +32,11 @@ Vagrant.configure(2) do |config|
     vb.cpus = 1
   end
 
+  # install git before running ansible provisioner
+  config.vm.provision "shell", inline: "yum -y install git"
+
   config.vm.provision "ansible" do |ansible|
+    ansible.galaxy_role_file = 'ansible/requirements.yml'
     ansible.playbook = 'ansible/development-playbook.yml'
     ansible.inventory_path = 'ansible/development.ini'
     ansible.limit = 'all'
