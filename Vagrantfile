@@ -26,6 +26,8 @@ Vagrant.configure(2) do |config|
   config.vm.network "forwarded_port", guest: 8983, host: 8985,
       auto_correct: true
 
+  config.ssh.forward_agent = true 
+
   config.vm.provider "virtualbox" do |vb|
     vb.linked_clone = true
     vb.memory = 1024
@@ -62,5 +64,4 @@ Vagrant.configure(2) do |config|
   # do NOT download the iso file from a webserver
   config.vbguest.no_remote = false
 
-  config.ssh.forward_agent = true
 end
