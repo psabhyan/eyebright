@@ -29,6 +29,8 @@ public/iiifvi
 .imdone
 .vagrant
 
+ansible/development-playbook.retry
+
 #Ignore all the roles which are downloaded from galaxy
 ansible/roles/*
 -ansible/roles/franklinkim.environment
